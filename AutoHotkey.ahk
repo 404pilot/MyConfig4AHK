@@ -13,16 +13,18 @@
 ; and it launches a new Notepad window (or activates an existing one).  To
 ; try out these hotkeys, run AutoHotkey again, which will load this file.
 
+;Be caution! error:
+; 1.   # & i(should be just #i)
 
 ;-------------------------------------------------------------查看key code
 ;-------------------------------------------------------------watch key code
 ;#InstallKeybdHook
 
 ;-------------------------------------------------------------debug webpage
-# & h::Run http://localhost:8080/itemSSH
+#h::Run http://localhost:8080/itemSSH
 
 ;-------------------------------------------------------------输出EL表达式${}
-# & i::
+#i::
 Send {$}{{}{}}{Left}
 return
 
@@ -46,34 +48,34 @@ RAlt & /:: Send {Delete}
 
 ;-------------------------------------------------------------select a word near cursor ---- alt+n
 ;-------------------------------------------------------------选定光标处的单词
-LAlt & n::
+!n::
 Send ^{Left}
 Send +^{Right}
 return
 
 ;-------------------------------------------------------------backspace一个单词  ---- alt + b
 ;-------------------------------------------------------------delete a word(ctrl+backspace)
-LAlt & b:: Send ^{Backspace}
+!b:: Send ^{Backspace}
 
 ;-------------------------------------------------------------delete 一个单词 --- alt + m
-LAlt & m:: Send ^{Delete}
+!m:: Send ^{Delete}
 
-;-------------------------------------------------------------[Lalt+;] == Backspace [SC027 is ;]
-LAlt & SC027:: Send {Backspace}
+;-------------------------------------------------------------[Lalt+;] == Backspace 
+!`;:: Send {Backspace}
 
 ;-------------------------------------------------------------[Lalt+'] == Delete
-LAlt & '::Send {Delete}
+!'::Send {Delete}
 
-;-------------------------------------------------------------选中一行(LAlt + a)
+;-------------------------------------------------------------选中一行(Alt + a)
 ;-------------------------------------------------------------select a row
-LAlt & a:: 
+!a:: 
 Send {Home} 
 Send +{End}
 return
 
-;-------------------------------------------------------------删除一行(LAlt + d)
+;-------------------------------------------------------------删除一行(Alt + d)
 ;-------------------------------------------------------------delete a row
-LAlt & d:: 
+!d:: 
 Send {End}
 Send +{Home}
 Send {Backspace}
