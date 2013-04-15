@@ -13,19 +13,25 @@
 ; and it launches a new Notepad window (or activates an existing one).  To
 ; try out these hotkeys, run AutoHotkey again, which will load this file.
 
-;Be caution! error:
+;Be caution!
 ; 1.   # & i(should be just #i)
+; 2.   RAlt will automatically install keyboard hook
 
 ;-------------------------------------------------------------查看key code
 ;-------------------------------------------------------------watch key code
 ;#InstallKeybdHook
 
 ;-------------------------------------------------------------debug webpage
-#h::Run http://localhost:8080/itemSSH
+#h::Run http://localhost:8080/ItemSSH
 
 ;-------------------------------------------------------------输出EL表达式${}
 #i::
 Send {$}{{}{}}{Left}
+return
+
+;-------------------------------------------------------------输出+""+,并移动光标至输入
+#s::
+Send {+}{"}{"}{+}{Left}{Left}
 return
 
 ;----------------------------满足poker配置satisfy poker mapping-------------------------------------------------------------------------
@@ -69,9 +75,13 @@ return
 ;-------------------------------------------------------------选中一行(Alt + a)
 ;-------------------------------------------------------------select a row
 !a:: 
-Send {Home} 
-Send +{End}
+Send {End}
+Send +{Home} 
 return
+
+;Send {Home} 
+;Send +{End}
+;return
 
 ;-------------------------------------------------------------删除一行(Alt + d)
 ;-------------------------------------------------------------delete a row
